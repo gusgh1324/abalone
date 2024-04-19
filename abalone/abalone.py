@@ -34,7 +34,7 @@ print(unique_names, len(unique_names))
 ##########################################
 
 ##########개인 데이터 받아오기###########
-user_result = search_user('월드')
+user_result = search_user('코더')
 user_name = user_result[0][0]
 ##################################
 
