@@ -34,6 +34,10 @@ class WinRate:
         char = ["전체승률", "선 승률", "악 승률"]
         for title, data in zip(char, user_avg):
             print('{:=^20}'.format(title))
-            win_rate = (data[0] / data[2]) * 100
-            print(f'{data[2]}전 {data[0]}승 {data[1]}패')
-            print(f' {win_rate:.1f}%')
+            total_games = data[2]
+            if total_games != 0:
+                win_rate = (data[0] / total_games) * 100
+                print(f'{total_games}전 {data[0]}승 {data[1]}패')
+                print(f' {win_rate:.1f}%')
+            else:
+                print("게임 기록이 없습니다.")

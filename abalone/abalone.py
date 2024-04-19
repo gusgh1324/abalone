@@ -24,6 +24,7 @@ def search_job(user_result):
         elif result == '패배':
             zero_data.loc[job, '패배'] += 1
     print(zero_data)
+    return zero_data
 
 ##############
 
@@ -33,19 +34,31 @@ print('{:=^90}'.format("유저목록"))
 print(unique_names, len(unique_names))
 ##########################################
 
-##########개인 데이터 받아오기###########
-user_result = search_user('코더')
-user_name = user_result[0][0]
-##################################
+# ##########개인 데이터 받아오기###########
+# user_result = search_user('코더')
+# user_name = user_result[0][0]
+# ##################################
+#
+# #############승률계산###############
+# wr = WinRate(user_result)
+# wr.avg_print()
+# ###############################
+#
+# print()
+#
+# #############직업#################
+# print(user_name)
+# search_job(user_result)
+# #############직업#################
 
-#############승률계산###############
-wr = WinRate(user_result)
-wr.avg_print()
-###############################
+user_data = []
 
-print()
+# 각 유니크한 이름에 대해 반복
+for name in unique_names:
+    # 사용자 정보 조회
+    user_result = search_user(name)
+    user_name = user_result[0][0]
+    wr = WinRate(user_result)
+    wr.avg_print()
+    user_job_data = search_job(user_result)
 
-#############직업#################
-print(user_name)
-search_job(user_result)
-#############직업#################
