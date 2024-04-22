@@ -41,3 +41,13 @@ class WinRate:
                 print(f' {win_rate:.1f}%')
             else:
                 print("게임 기록이 없습니다.")
+
+    def avg_test(self):
+        win_rates=[]
+        user_avg = self.avg_run_all()
+        for data in user_avg:
+            total_games = data[2]
+            if total_games != 0:
+                win_rate = (data[0] / total_games) * 100
+                win_rates.append(win_rate)
+        return win_rates
