@@ -3,6 +3,7 @@ import numpy as np
 from method.win_rate import WinRate
 
 data = pd.read_csv('아발론로그.csv', encoding='cp949')
+
 # 유저 데이터 저장
 def search_user(user):
     return data[data['이름'] == user].values.tolist()
@@ -35,30 +36,31 @@ print(unique_names, len(unique_names))
 ##########################################
 
 # ##########개인 데이터 받아오기###########
-# user_result = search_user('코더')
-# user_name = user_result[0][0]
+user_result = search_user('월드')
+user_name = user_result[0][0]
 # ##################################
 #
 # #############승률계산###############
-# wr = WinRate(user_result)
-# wr.avg_print()
+wr = WinRate(user_result)
+wr.avg_print()
 # ###############################
 #
 # print()
 #
 # #############직업#################
-# print(user_name)
-# search_job(user_result)
+print(user_name)
+search_job(user_result)
 # #############직업#################
 
 user_data = []
 
-# 각 유니크한 이름에 대해 반복
-for name in unique_names:
-    # 사용자 정보 조회
-    user_result = search_user(name)
+for i in unique_names:
+    user_result = data[data['이름'] == i].values.tolist()
     user_name = user_result[0][0]
     wr = WinRate(user_result)
     wr.avg_print()
+
     user_job_data = search_job(user_result)
 
+    csv_filename = f"user_all/{user_name}.csv"
+    user_job_data.to_csv(csv_filename, encoding='utf-8-sig')
