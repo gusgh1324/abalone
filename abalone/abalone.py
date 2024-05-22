@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import numpy as np
 from method.win_rate import WinRate
@@ -7,10 +8,15 @@ data = pd.read_csv('아발론로그.csv')
 
 # 유저 데이터 저장
 def search_user(user):
-    return data[data['이름'] == user].values.tolist()
+    user_data = data[data['이름'] == user].values.tolist()
+    if user_data:
+        return user_data
+    else:
+        print(f'{user}님의 전적이 존재하지 않습니다')
+        os._exit(0)
 
 
-### 걸린직업 ###
+    ### 걸린직업 ###
 def search_job(user_result):
     job_list = ["멀린", "퍼시벌", "시민", "암살자", "모르가나", "모드레드", "오베론", "악세"]
     zero = np.zeros(len(job_list), dtype=int)
@@ -80,7 +86,7 @@ print(f'{unique_names}, 총 {len(unique_names)}명')
 ##########################################
 
 ##########개인 데이터 받아오기###########
-user_result = search_user('코더')
+user_result = search_user('마레')
 user_name = user_result[0][0]
 
 WinRate(user_result).avg_print()
