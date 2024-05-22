@@ -110,17 +110,17 @@ print(f'멀린일때 암살당한 횟수 {count_md}회')
 #######게임횟수############
 # game_counts = data['게임인원'].value_counts()
 # game_all = game_counts.get(7, 0) / 7 + game_counts.get(8, 0)/8 + game_counts.get(9, 0)/9 + game_counts.get(10, 0)/10
-# print(f'\n게임횟수 총 {int(game_all)}판')
+# print(f'\r기록된 게임횟수 총 {int(game_all)}판')
 ##########################
 
 # csv추출
-for i in unique_names:
-    user_result = data[data['이름'] == i].values.tolist()
-    user_name = user_result[0][0]
-    wr = WinRate(user_result)
-    wr.avg_print()
-
-    user_job_data = search_job(user_result)
-
-    csv_filename = f"user_all/{user_name}.csv"
-    user_job_data.to_csv(csv_filename)
+# for i in unique_names:
+#     user_result = data[data['이름'] == i].values.tolist()
+#     user_name = user_result[0][0]
+#     wr = WinRate(user_result)
+#     wr.avg_print()
+#
+#     user_job_data = search_job(user_result)
+#
+#     csv_filename = f"user_all/{user_name}.csv"
+#     user_job_data.to_csv(csv_filename)
